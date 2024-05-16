@@ -46,7 +46,8 @@
   become: true
   template:
     src: "{{ role_path }}/templates/reverse_lookup.conf.j2"
-    dest: "/etc/bind/db.{{ item.reverse_zone.split('.')[-2] }}"
+#    dest: "/etc/bind/db.{{ item.reverse_zone.split('.')[-2] }}"
+    dest: "/etc/bind/db.{{ item.reverse_zone }}"
     owner: root
     group: root
   loop: "{{ hosts_data.configs }}"
