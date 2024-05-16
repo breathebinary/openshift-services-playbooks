@@ -2,12 +2,12 @@
 
 zone "{{ config.zone }}" {
     type master;
-    file "/etc/bind/{{ config.zone }}.zone";
+    file "/etc/bind/db.{{ config.zone }}";
 };
 
 zone "{{ config.reverse_zone }}" {
     type master;
-    file "/etc/bind/{{ config.reverse_zone }}.zone";
+    file "/etc/bind/db.{{ config.reverse_zone }}";
 };
 
 {% endfor %}
