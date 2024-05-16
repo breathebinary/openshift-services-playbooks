@@ -19,6 +19,7 @@
 #    mode: 0644
 
 - name: Ensure Apache service is running and enabled
+  become: true
   service:
     name: apache2
     state: restarted
