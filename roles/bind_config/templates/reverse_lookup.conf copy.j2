@@ -1,5 +1,6 @@
+$ORIGIN {{ item.reverse_zone }}.
 $TTL 86400
-@    IN    SOA    {{ item.ns1 }}. {{ item.admin }} (
+@    IN    SOA    {{ item.ns1 }}. {{ item.admin }}. (
                  {{ item.serial }} ; Serial
                  {{ item.refresh }}       ; Refresh
                  {{ item.retry }}       ; Retry
@@ -9,5 +10,5 @@ $TTL 86400
 @    IN    NS     {{ item.ns1 }}.
  
 {% for server in item.servers %}
-{{ server.name }}.{{ item.zone }}.  IN    A      {{ server.ip }}
+{{ server.ip.split('.')[-1] }}   IN    PTR    {{ server.name }}.{{ item.zone }}.
 {% endfor %}
