@@ -25,7 +25,7 @@
 - name: Create domain zone files
   template:
     src: "{{ role_path }}/templates/lookup_file.conf.j2"
-    dest: "/etc/bind/zones/{{ item.key }}.zone"
+    dest: "/etc/bind/zones/{{ item.zone }}.zone"
   loop: "{{ hosts_data.configs }}"
 
 #- name: Create reverse lookup zone files
