@@ -1,6 +1,6 @@
 $ORIGIN {{ item.zone }}.
 $TTL 86400
-@    IN    SOA    {{ item.zone.ns1 }}. {{ item.admin }}. (
+@    IN    SOA    {{ item.ns1 }}. {{ item.admin }}. (
                  {{ item.serial }} ; Serial
                  {{ item.refresh }}       ; Refresh
                  {{ item.retry }}       ; Retry
