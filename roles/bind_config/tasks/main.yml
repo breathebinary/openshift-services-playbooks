@@ -19,8 +19,8 @@
 - name: Create named.conf
   become: true
   template:
-    src: "{{ role_path }}/templates/named_.conf.j2"
-    dest: /etc/bind/named.conf
+    src: "{{ role_path }}/templates/named.conf.j2"
+    dest: /etc/bind/named_.conf
 
 - name: Create domain zone files
   become: true
