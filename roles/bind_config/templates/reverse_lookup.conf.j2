@@ -1,14 +1,14 @@
-$ORIGIN {{ reverse_zone }}.
+$ORIGIN {{ item.reverse_zone }}.
 $TTL 86400
-@    IN    SOA    {{ domain_config.ns1 }}. {{ domain_config.admin }}. (
-                 {{ domain_config.serial }} ; Serial
-                 {{ domain_config.refresh }}       ; Refresh
-                 {{ domain_config.retry }}       ; Retry
-                 {{ domain_config.expire }}     ; Expire
-                 {{ domain_config.ttl }}      ; Minimum TTL
+@    IN    SOA    {{ item.ns1 }}. {{ item.admin }}. (
+                 {{ item.serial }} ; Serial
+                 {{ item.refresh }}       ; Refresh
+                 {{ item.retry }}       ; Retry
+                 {{ item.expire }}     ; Expire
+                 {{ item.ttl }}      ; Minimum TTL
                  )
-@    IN    NS     {{ domain_config.ns1 }}.
+@    IN    NS     {{ item.ns1 }}.
  
-{% for server in domain_config.servers %}
+{% for server in item.servers %}
 {{ server.ip.split('.')[-1] }}   IN    PTR    {{ server.name }}.{{ domain }}.
 {% endfor %}

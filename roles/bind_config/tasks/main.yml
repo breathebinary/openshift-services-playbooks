@@ -23,18 +23,18 @@
     dest: /etc/bind/named.conf
 
 - name: Create domain zone files
+  become: true
   template:
     src: "{{ role_path }}/templates/lookup.conf.j2"
-    dest: "/etc/bind/zones/{{ item.zone }}.zone"
+    dest: "/etc/bind/{{ item.zone }}.zone"
   loop: "{{ hosts_data.configs }}"
 
-#- name: Create reverse lookup zone files
-#  template:
-#    src: "{{ role_path }}/templates/reverse_lookup_file.conf.j2"
-#    dest: "/etc/bind/zones/{{ item.key.split('.')[-2] }}.zone"
-#  loop: "{{ hosts_data.configs }}"
-#  loop_control:
-#    loop_var: item
+- name: Create reverse lookup zone files
+  become: true
+  template:
+    src: "{{ role_path }}/templates/reverse_lookup.conf.j2"
+    dest: "/etc/bind/{{ item.reverse_zone.split('.')[-2] }}.zone"
+  loop: "{{ hosts_data.configs }}"
 
 - name: Ensure named service is running and enabled
   service:
