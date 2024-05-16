@@ -22,13 +22,11 @@
     src: "{{ role_path }}/templates/named.conf.j2"
     dest: /etc/bind/named.conf
 
-#- name: Create domain zone files
-#  template:
-#    src: "{{ role_path }}/templates/lookup_file.conf.j2"
-#    dest: "/etc/bind/zones/{{ item.key }}.zone"
-#  loop: "{{ hosts_data.configs }}"
-#  loop_control:
-#    loop_var: item
+- name: Create domain zone files
+  template:
+    src: "{{ role_path }}/templates/lookup_file.conf.j2"
+    dest: "/etc/bind/zones/{{ item.key }}.zone"
+  loop: "{{ hosts_data.configs }}"
 
 #- name: Create reverse lookup zone files
 #  template:
