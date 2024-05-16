@@ -33,3 +33,4 @@ inventory/*
 roles/*/files/*
 !roles/haproxy_config/files/haproxy.cfg.j2
 !roles/bind_config/files/named.conf.local
+!roles/bind_config/files/named.conf.options

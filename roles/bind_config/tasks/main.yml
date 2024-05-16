@@ -16,6 +16,14 @@
     file: "/home/ubuntu/ansible-playbooks/inventories/zones_data.yaml"
     name: hosts_data
  
+- name: Create named.conf.options
+  become: true
+  template:
+    src: "{{ role_path }}/files/named.conf.options"
+    dest: /etc/bind/named.conf.local
+    owner: root
+    group: bind
+
 - name: Create named.conf.local
   become: true
   template:
