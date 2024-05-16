@@ -16,24 +16,28 @@
     file: "/home/ubuntu/ansible-playbooks/inventories/zones_data.yaml"
     name: hosts_data
  
-- name: Create named.conf
+- name: Create named.conf.local
   become: true
   template:
-    src: "{{ role_path }}/templates/named.conf.j2"
-    dest: /etc/bind/named_.conf
+    src: "{{ role_path }}/files/named.conf.local"
+    dest: /etc/bind/named.conf.local
+    owner: root
+    group: bind
 
 - name: Create domain zone files
   become: true
   template:
     src: "{{ role_path }}/templates/lookup.conf.j2"
-    dest: "/etc/bind/{{ item.zone }}.zone"
+    dest: "/etc/bind/db.{{ item.zone }}"
+    owner: root
+    group: root
   loop: "{{ hosts_data.configs }}"
 
 - name: Create reverse lookup zone files
   become: true
   template:
     src: "{{ role_path }}/templates/reverse_lookup.conf.j2"
-    dest: "/etc/bind/{{ item.reverse_zone.split('.')[-2] }}.zone"
+    dest: "/etc/bind/db.{{ item.reverse_zone.split('.')[-2] }}"
   loop: "{{ hosts_data.configs }}"
 
 - name: Ensure named service is running and enabled
@@ -41,4 +45,3 @@
     name: named
     state: started
     enabled: yes
-
