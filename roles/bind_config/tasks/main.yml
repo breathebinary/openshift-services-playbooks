@@ -1,0 +1,45 @@
+---
+# tasks file for bind_config
+- name: Update apt package cache
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Install bind package
+  become: true
+  apt:
+    name: bind9
+    state: present
+
+- name: Include hosts vars
+  include_vars:
+    file: "/home/ubuntu/ansible-playbooks/inventories/zones_data.yaml"
+    name: hosts_data
+ 
+- name: Create named.conf
+  template:
+    src: named.conf.j2
+    dest: /etc/bind/named.conf
+
+- name: Create domain zone files
+  template:
+    src: domain_zone.j2
+    dest: "/etc/bind/zones/{{ item.key }}.zone"
+  loop: "{{ hosts_data.domains.items() }}"
+  loop_control:
+    loop_var: item
+
+- name: Create reverse lookup zone files
+  template:
+    src: reverse_zone.j2
+    dest: "/etc/bind/zones/{{ item.key.split('.')[-2] }}.zone"
+  loop: "{{ hosts_data.domains.items() }}"
+  loop_control:
+    loop_var: item
+
+- name: Ensure named service is running and enabled
+  service:
+    name: named
+    state: started
+    enabled: yes
+

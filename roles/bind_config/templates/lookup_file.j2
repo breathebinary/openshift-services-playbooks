@@ -1,0 +1,14 @@
+$ORIGIN {{ domain }}.
+$TTL 86400
+@    IN    SOA    {{ domain_config.ns1 }}. {{ domain_config.admin }}. (
+                 {{ domain_config.serial }} ; Serial
+                 {{ domain_config.refresh }}       ; Refresh
+                 {{ domain_config.retry }}       ; Retry
+                 {{ domain_config.expire }}     ; Expire
+                 {{ domain_config.ttl }}      ; Minimum TTL
+                 )
+@    IN    NS     {{ domain_config.ns1 }}.
+ 
+{% for server in domain_config.servers %}
+{{ server.name }}  IN    A      {{ server.ip }}
+{% endfor %}
