@@ -92,10 +92,13 @@ options {
 //include "/etc/bind/example.conf";
 
 {% for config in hosts_data.configs %}
-{% for zone, zone_config in config.servers.items() %}
-zone "{{ zone }}" {
+zone "{{ config.zone }}" {
     type master;
-    file "{{ zone_config.file }}";
+    file "{{ config.zone }}.zone";
 };
-{% endfor %}
+
+zone "{{ config.reverse_zone }}" {
+    type master;
+    file "{{ config.reverse_zone }}.zone";
+};
 {% endfor %}
