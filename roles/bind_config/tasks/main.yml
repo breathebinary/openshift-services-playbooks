@@ -17,6 +17,7 @@
     name: hosts_data
  
 - name: Create named.conf
+  become: true
   template:
     src: "{{ role_path }}/templates/named.conf.j2"
     dest: /etc/bind/named.conf
