@@ -91,7 +91,7 @@ options {
 // You can include files:
 //include "/etc/bind/example.conf";
 
-{% for domain, config in domains.items() %}
+{% for config in hosts_data.configs %}
 {% for zone, zone_config in config.servers.items() %}
 zone "{{ zone }}" {
     type master;
@@ -99,23 +99,3 @@ zone "{{ zone }}" {
 };
 {% endfor %}
 {% endfor %}
-
-zone "kucc.org" IN {
-  type master;
-  file "/etc/bind/zones/okd.kucc.org.zone";
-};
-
-zone "1.168.192.in-addr.arpa" IN {
-  type master;
-  file "/etc/bind/zones/192.168.1.zone";
-};
-
-zone "keralauniversity.edu" IN {
-  type master;
-  file "/etc/bind/zones/keralauniversity.edu.zone";
-};
-
-zone "20.20.10.in-addr.arpa" IN {
-  type master;
-  file "/etc/bind/zones/20.20.10.zone";
-};
