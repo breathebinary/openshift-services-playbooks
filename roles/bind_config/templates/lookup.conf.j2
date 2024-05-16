@@ -10,5 +10,5 @@ $TTL 86400
 @    IN    NS     {{ item.ns1 }}.
  
 {% for server in item.servers %}
-{{ server.ip }}  IN    A      {{ server.name }}.{{ item.zone }}.
+{{ server.name }}.{{ item.zone }}.  IN    A      {{ server.ip }}
 {% endfor %}
