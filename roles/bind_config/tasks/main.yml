@@ -24,6 +24,15 @@
     owner: root
     group: bind
 
+- name: Create named.conf.openshift-zones
+  become: true
+  template:
+    src: "{{ role_path }}/templates/named.conf.openshift-zones.j2"
+    dest: "/etc/bind/named.conf.openshift-zones"
+    owner: root
+    group: bind
+  loop: "{{ hosts_data.configs }}"
+
 - name: Create domain zone files
   become: true
   template:
@@ -38,6 +47,8 @@
   template:
     src: "{{ role_path }}/templates/reverse_lookup.conf.j2"
     dest: "/etc/bind/db.{{ item.reverse_zone.split('.')[-2] }}"
+    owner: root
+    group: root
   loop: "{{ hosts_data.configs }}"
 
 - name: Ensure named service is running and enabled
