@@ -1,6 +1,6 @@
 ---
 - name: Setup openshift ingress
-  hosts: ingress_servers
+  hosts: services_hosts
   gather_facts: no
   roles:
     - apache_config
