@@ -12,6 +12,6 @@
     group: root
     mode: 0600
 
-- name: Apply Netplan configuration
-  become: true
-  command: netplan apply
+#- name: Apply Netplan configuration
+#  become: true
+#  command: netplan apply
