@@ -1,14 +1,12 @@
-- name: Configure DNS servers using Netplan
-  hosts: all
-  become: yes
-  vars_files:
-    - "{{ role_path }}/files/dns_servers.yml"
- 
-  tasks:
-    - name: Create Netplan configuration with custom DNS
-      template:
-        src: "{{ role_path }}/templates/netplan.yaml.j2"
-        dest: /etc/netplan/01-netcfg.yaml
- 
-    - name: Apply Netplan configuration
-      command: netplan apply
+- name: Include hosts vars
+  include_vars:
+    file: "{{ role_path }}/files/dns_servers.yml"
+    name: dns_servers
+    
+- name: Create Netplan configuration with custom DNS
+  template:
+    src: "{{ role_path }}/templates/netplan.yaml.j2"
+    dest: /etc/netplan/01-netcfg.yaml
+
+- name: Apply Netplan configuration
+  command: netplan apply
