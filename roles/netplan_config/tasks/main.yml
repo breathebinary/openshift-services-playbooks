@@ -1,7 +1,6 @@
 - name: Include hosts vars
   include_vars:
     file: "{{ role_path }}/files/dns_servers.yml"
-    name: dns_servers
 
 - name: Create Netplan configuration with custom DNS
   become: true
