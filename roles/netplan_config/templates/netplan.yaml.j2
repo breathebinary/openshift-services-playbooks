@@ -1,0 +1,12 @@
+# netplan_template.yaml.j2
+network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: true
+      nameservers:
+        addresses: [
+          {% for dns in dns_servers %}
+            {{ dns }} {% if not loop.last %}, {% endif %}
+          {% endfor %}
+        ]
