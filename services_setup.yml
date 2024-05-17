@@ -3,6 +3,5 @@
   hosts: services_hosts
   gather_facts: no
   roles:
-    - netplan_config
     - apache_config
     - bind_config
