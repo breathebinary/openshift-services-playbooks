@@ -4,6 +4,7 @@
     name: dns_servers
 
 - name: Create Netplan configuration with custom DNS
+  become: true
   template:
     src: "{{ role_path }}/templates/netplan.yaml.j2"
     dest: /etc/netplan/01-netcfg.yaml
