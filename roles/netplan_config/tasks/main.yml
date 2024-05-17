@@ -10,7 +10,7 @@
     dest: /etc/netplan/01-netcfg.yaml
     owner: root
     group: root
-    mode: 0600
+    mode: 0640
 
 - name: Apply Netplan configuration
   command: netplan apply
