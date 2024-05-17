@@ -34,4 +34,4 @@ roles/*/files/*
 !roles/haproxy_config/files/haproxy.cfg.j2
 !roles/bind_config/files/named.conf.local
 !roles/bind_config/files/named.conf.options
-!roles/bind_config/files/dns_servers.yml
+!roles/netplan_config/files/dns_servers.yml
