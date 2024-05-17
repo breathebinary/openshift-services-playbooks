@@ -1,0 +1,28 @@
+; db.okd.kucc.org
+;$TTL 86400
+;$ORIGIN 1.168.192.in-addr.arpa.
+
+$TTL 1W
+$ORIGIN 1.168.192.in-addr.arpa.
+@	IN	SOA	ns1.kucc.org.	root (
+			2019070700	; serial
+			3H		; refresh (3 hours)
+			30M		; retry (30 minutes)
+			2W		; expiry (2 weeks)
+			1W )		; minimum (1 week)
+	IN	NS	ns1.kucc.org.
+;
+9	IN	PTR	api.ocp4.kucc.org.
+10	IN	PTR	api-int.ocp4.kucc.org. 
+;
+20	IN	PTR	bootstrap.ocp4.kucc.org. 
+;
+21	IN	PTR	ocp4-pb6g7-master-0.ocp4.kucc.org. 
+22	IN	PTR	ocp4-pb6g7-master-1.ocp4.kucc.org. 
+23	IN	PTR	ocp4-pb6g7-master-2.ocp4.kucc.org. 
+;
+31	IN	PTR	ocp4-pb6g7-compute-0.ocp4.kucc.org. 
+32	IN	PTR	ocp4-pb6g7-compute-1.ocp4.kucc.org. 
+33	IN	PTR	ocp4-pb6g7-compute-2.ocp4.kucc.org. 
+;
+;EOF

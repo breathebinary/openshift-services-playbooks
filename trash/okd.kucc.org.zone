@@ -1,0 +1,41 @@
+; db.okd.kucc.org
+$TTL 1W
+;$ORIGIN okd.kucc.org.
+
+@	IN	SOA	ns1.kucc.org.	root (
+	2019070700	; serial
+	3H		; refresh (3 hours)
+	30M		; retry (30 minutes)
+	2W		; expiry (2 weeks)
+	1W		; minimum (1 week)
+)
+
+	IN	NS	ns1.kucc.org.
+
+;
+;
+ns1.kucc.org.		IN	A	192.168.1.6
+
+;
+;
+ns1.kucc.org.			IN	A	192.168.1.6
+;
+helper.kucc.org.		IN	A	192.168.1.6
+helper.ocp4.kucc.org.		IN	A	192.168.1.6
+;
+api.ocp4.kucc.org.		IN	A	192.168.1.9 
+api-int.ocp4.kucc.org.		IN	A	192.168.1.10 
+;
+*.apps.ocp4.kucc.org.		IN	A	192.168.1.10 
+;
+bootstrap.ocp4.kucc.org.	IN	A	192.168.1.20
+;
+ocp4-pb6g7-master-0.ocp4.kucc.org.	IN	A	192.168.1.21 
+ocp4-pb6g7-master-1.ocp4.kucc.org.	IN	A	192.168.1.22
+ocp4-pb6g7-master-2.ocp4.kucc.org.	IN	A	192.168.1.23 
+;
+ocp4-pb6g7-compute-0.ocp4.kucc.org.	IN	A	192.168.1.31
+ocp4-pb6g7-compute-1.ocp4.kucc.org.	IN	A	192.168.1.32
+ocp4-pb6g7-compute-2.ocp4.kucc.org.	IN	A	192.168.1.33
+;
+;EOF
